@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+type: LoadBalancer
+
+metadata:
+  name: uploads3-bucket
+  labels:
+    app: uploads3-bucket
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uploads3-bucket
+
+  template:
+    containers:
+      - name: uploads3-bucket
+        image: <Image>
+        envFrom:
+          - configMapRef:
+              name: uploads3-bucket-configmap
